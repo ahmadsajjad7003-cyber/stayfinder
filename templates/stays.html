@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stays — StayFinder</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}?v=2">
+</head>
+<body>
+
+    <nav class="navbar">
+        <a href="{{ url_for('home') }}" class="nav-logo" style="text-decoration:none;">StayFinder</a>
+        <div class="nav-links">
+            <a href="{{ url_for('stays') }}">Stays</a>
+            <a href="{{ url_for('flights') }}">Flights</a>
+            <a href="{{ url_for('cars') }}">Car Rental</a>
+            <a href="{{ url_for('attractions') }}">Attractions</a>
+            {% if user %}
+                <a href="{{ url_for('dashboard') }}" class="nav-btn">Hi, {{ user }}</a>
+                <a href="{{ url_for('logout') }}">Sign Out</a>
+            {% else %}
+                <a href="{{ url_for('signin') }}" class="nav-btn">Sign In</a>
+            {% endif %}
+        </div>
+    </nav>
+
+    <section class="hero">
+        <h1>Stays</h1>
+        <p>Search hotels, homes, and vacation rentals worldwide.</p>
+    </section>
+
+    <section class="main-content" style="grid-template-columns: 1fr;">
+        <div class="widget-side" style="position:static;">
+            <div class="widget-header">
+                <h2>Book Your Stay</h2>
+                <p>5% cash back · 1 tonne CO₂ offset per booking</p>
+            </div>
+            <div id="impt-swarm"></div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="footer-bottom">
+            <p>© 2026 StayFinder. All rights reserved.</p>
+            <p>Contact: <a href="mailto:ahmadsajjad7003@gmail.com">ahmadsajjad7003@gmail.com</a></p>
+        </div>
+    </footer>
+
+    <script src="https://swarm.impt.io/widget.js" data-key="p_hkhrhj92ywq" async></script>
+</body>
+</html>

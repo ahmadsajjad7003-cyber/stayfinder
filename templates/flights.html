@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flights — StayFinder</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}?v=2">
+</head>
+<body>
+
+    <nav class="navbar">
+        <a href="{{ url_for('home') }}" class="nav-logo" style="text-decoration:none;">StayFinder</a>
+        <div class="nav-links">
+            <a href="{{ url_for('stays') }}">Stays</a>
+            <a href="{{ url_for('flights') }}">Flights</a>
+            <a href="{{ url_for('cars') }}">Car Rental</a>
+            <a href="{{ url_for('attractions') }}">Attractions</a>
+            {% if user %}
+                <a href="{{ url_for('dashboard') }}" class="nav-btn">Hi, {{ user }}</a>
+                <a href="{{ url_for('logout') }}">Sign Out</a>
+            {% else %}
+                <a href="{{ url_for('signin') }}" class="nav-btn">Sign In</a>
+            {% endif %}
+        </div>
+    </nav>
+
+    <section class="hero">
+        <h1>Flights</h1>
+        <p>Coming Soon — We are working on flight search.</p>
+    </section>
+
+    <section class="coming-soon">
+        <h2>✈️ Flights Coming Soon</h2>
+        <p>We are working hard to bring you the best flight deals. Stay tuned!</p>
+        <a href="{{ url_for('home') }}" class="auth-btn" style="display:inline-block; text-decoration:none; padding: 12px 30px;">← Back to Home</a>
+    </section>
+
+    <footer class="footer">
+        <div class="footer-bottom">
+            <p>© 2026 StayFinder. All rights reserved.</p>
+        </div>
+    </footer>
+
+</body>
+</html>

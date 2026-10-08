@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard — StayFinder</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}?v=2">
+</head>
+<body class="auth-body">
+
+    <div class="auth-container">
+        <a href="{{ url_for('home') }}" class="auth-logo">StayFinder</a>
+
+        <div class="auth-card dashboard-card">
+            <h2>Welcome, {{ user }}! 👋</h2>
+            <p class="auth-sub">You are successfully signed in.</p>
+
+            <div class="dashboard-stats">
+                <div class="dash-stat">
+                    <div class="dash-num">0</div>
+                    <div class="dash-label">Bookings</div>
+                </div>
+                <div class="dash-stat">
+                    <div class="dash-num">$0</div>
+                    <div class="dash-label">Cash Back</div>
+                </div>
+                <div class="dash-stat">
+                    <div class="dash-num">0T</div>
+                    <div class="dash-label">CO₂ Offset</div>
+                </div>
+            </div>
+
+            <a href="{{ url_for('home') }}" class="auth-btn" style="display:block; text-align:center; text-decoration:none; margin-bottom:10px;">Search Hotels</a>
+            <a href="{{ url_for('logout') }}" class="auth-logout">Sign Out</a>
+        </div>
+
+        <a href="{{ url_for('home') }}" class="auth-back">← Back to Home</a>
+    </div>
+
+</body>
+</html>

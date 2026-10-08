@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StayFinder — Find Your Perfect Stay Worldwide</title>
+    <meta name="description" content="Search hotels, homes, and more worldwide. Get 5% cash back on every booking and offset 1 tonne CO₂ per stay.">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+    <!-- ================= TOP BAR ================= -->
+    <div class="top-bar">
+        <div class="top-bar-inner">
+            <div class="top-links">
+                <a href="#about">About</a>
+                <a href="#faqs">FAQs</a>
+                <a href="#contact">Contact</a>
+            </div>
+            <div class="top-actions">
+                <select class="currency-select" aria-label="Currency">
+                    <option value="USD">USD</option>
+                    <option value="EUR">EUR</option>
+                    <option value="GBP">GBP</option>
+                    <option value="PKR">PKR</option>
+                </select>
+                <select class="lang-select" aria-label="Language">
+                    <option value="en">EN</option>
+                    <option value="ur">UR</option>
+                    <option value="ar">AR</option>
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <!-- ================= NAVBAR ================= -->
+    <nav class="navbar">
+        <a href="{{ url_for('home') }}" class="nav-logo" style="text-decoration:none;">StayFinder</a>
+        <div class="nav-links">
+            <a href="{{ url_for('stays') }}">Stays</a>
+            <a href="{{ url_for('flights') }}">Flights</a>
+            <a href="{{ url_for('cars') }}">Car Rental</a>
+            <a href="{{ url_for('attractions') }}">Attractions</a>
+            <a href="#about">About Us</a>
+            <a href="#faqs">FAQs</a>
+            <a href="#contact">Contact</a>
+
+            {% if user %}
+                <a href="{{ url_for('dashboard') }}" class="nav-btn">Hi, {{ user }}</a>
+                <a href="{{ url_for('logout') }}">Sign Out</a>
+            {% else %}
+                <a href="{{ url_for('signin') }}" class="nav-btn">Sign In</a>
+            {% endif %}
+        </div>
+    </nav>
+
+    <!-- ================= HERO ================= -->
+    <section class="hero">
+        <h1>Find Your Next Stay</h1>
+        <p>Search hotels, homes, and more — all in one place.</p>
+    </section>
+
+    <!-- ================= MAIN CONTENT ================= -->
+    <section class="main-content" id="hotels">
+
+        <div class="widget-side">
+            <div class="widget-header">
+                <h2>Book Your Stay</h2>
+                <p>5% cash back · 1 tonne CO₂ offset per booking</p>
+            </div>
+            <div id="impt-swarm"></div>
+        </div>
+
+        <div class="hotels-side">
+            <h2>Featured Hotels</h2>
+            <p class="section-sub">Handpicked stays from around the world</p>
+
+            <div class="hotel-grid">
+                <div class="hotel-card">
+                    <div class="hotel-img" style="background-image: url('https://images.unsplash.com/photo-1566073771259-6a8506099945?w=600');"></div>
+                    <div class="hotel-info">
+                        <h3>The Grand Palace</h3>
+                        <p class="hotel-loc">📍 New York, USA</p>
+                        <p class="hotel-price">$189 <span>/ night</span></p>
+                    </div>
+                </div>
+
+                <div class="hotel-card">
+                    <div class="hotel-img" style="background-image: url('https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?w=600');"></div>
+                    <div class="hotel-info">
+                        <h3>Ocean View Resort</h3>
+                        <p class="hotel-loc">📍 Bali, Indonesia</p>
+                        <p class="hotel-price">$145 <span>/ night</span></p>
+                    </div>
+                </div>
+
+                <div class="hotel-card">
+                    <div class="hotel-img" style="background-image: url('https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?w=600');"></div>
+                    <div class="hotel-info">
+                        <h3>Parisian Luxury</h3>
+                        <p class="hotel-loc">📍 Paris, France</p>
+                        <p class="hotel-price">$220 <span>/ night</span></p>
+                    </div>
+                </div>
+
+                <div class="hotel-card">
+                    <div class="hotel-img" style="background-image: url('https://images.unsplash.com/photo-1590490360182-c33d57733427?w=600');"></div>
+                    <div class="hotel-info">
+                        <h3>Tokyo Skyline</h3>
+                        <p class="hotel-loc">📍 Tokyo, Japan</p>
+                        <p class="hotel-price">$175 <span>/ night</span></p>
+                    </div>
+                </div>
+
+                <div class="hotel-card">
+                    <div class="hotel-img" style="background-image: url('https://images.unsplash.com/photo-1582719508461-905c673771fd?w=600');"></div>
+                    <div class="hotel-info">
+                        <h3>Desert Oasis</h3>
+                        <p class="hotel-loc">📍 Dubai, UAE</p>
+                        <p class="hotel-price">$310 <span>/ night</span></p>
+                    </div>
+                </div>
+
+                <div class="hotel-card">
+                    <div class="hotel-img" style="background-image: url('https://images.unsplash.com/photo-1618773928121-c32242e63f39?w=600');"></div>
+                    <div class="hotel-info">
+                        <h3>Mountain Lodge</h3>
+                        <p class="hotel-loc">📍 Swiss Alps</p>
+                        <p class="hotel-price">$265 <span>/ night</span></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+    <!-- ================= OFFERS ================= -->
+    <section class="offers" id="deals">
+        <h2>Special Offers</h2>
+        <p class="section-sub">Promotions, deals, and special offers for you</p>
+        <div class="offers-grid">
+            <div class="offer-card">
+                <div class="offer-badge">5% Cash Back</div>
+                <h3>Earn Rewards on Every Booking</h3>
+                <p>Get 5% cash back credited to your wallet within 48 hours of check-in.</p>
+                <a href="#hotels" class="offer-btn">Book Now →</a>
+            </div>
+            <div class="offer-card offer-green">
+                <div class="offer-badge">Carbon Offset</div>
+                <h3>1 Tonne CO₂ Offset Per Stay</h3>
+                <p>Every booking offsets 1 tonne of CO₂ at no extra cost to you.</p>
+                <a href="#about" class="offer-btn">Learn More →</a>
+            </div>
+            <div class="offer-card">
+                <div class="offer-badge">Free Cancellation</div>
+                <h3>Flexible Booking Options</h3>
+                <p>Free cancellation available on most rooms — book with confidence.</p>
+                <a href="#hotels" class="offer-btn">Search Stays →</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= WHY CHOOSE US ================= -->
+    <section class="features">
+        <h2>Why Choose StayFinder?</h2>
+        <div class="feature-grid">
+            <div class="feature-card">
+                <h3>🌍 Worldwide</h3>
+                <p>Thousands of hotels across the globe.</p>
+            </div>
+            <div class="feature-card">
+                <h3>💰 Best Prices</h3>
+                <p>Guaranteed best rates on every booking.</p>
+            </div>
+            <div class="feature-card">
+                <h3>⭐ Trusted Reviews</h3>
+                <p>Real reviews from real travelers.</p>
+            </div>
+            <div class="feature-card">
+                <h3>🌱 Carbon Offset</h3>
+                <p>1 tonne CO₂ offset per booking.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= POPULAR DESTINATIONS ================= -->
+    <section class="destinations" id="destinations">
+        <h2>Popular Destinations</h2>
+        <div class="destination-grid">
+            <div class="destination-card" style="background-image: url('https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?w=600');">
+                <h3>New York</h3>
+            </div>
+            <div class="destination-card" style="background-image: url('https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=600');">
+                <h3>Paris</h3>
+            </div>
+            <div class="destination-card" style="background-image: url('https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?w=600');">
+                <h3>London</h3>
+            </div>
+            <div class="destination-card" style="background-image: url('https://images.unsplash.com/photo-1542051841857-5f90071e7989?w=600');">
+                <h3>Tokyo</h3>
+            </div>
+            <div class="destination-card" style="background-image: url('https://images.unsplash.com/photo-1538332576228-eb5b4c4de6f5?w=600');">
+                <h3>Dubai</h3>
+            </div>
+            <div class="destination-card" style="background-image: url('https://images.unsplash.com/photo-1533105079780-92b9be482077?w=600');">
+                <h3>Rome</h3>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= ABOUT US ================= -->
+    <section class="about" id="about">
+        <h2>About Us</h2>
+        <p class="about-text">
+            StayFinder is your trusted partner in finding the perfect stay, anywhere in the world.
+            We connect travelers with over 8 million hotels, resorts, and vacation rentals across
+            190+ countries. Every booking you make through StayFinder offsets 1 tonne of CO₂ and
+            earns you 5% cash back — because traveling should be good for you and for the planet.
+        </p>
+        <div class="about-stats">
+            <div class="stat">
+                <div class="stat-num">8M+</div>
+                <div class="stat-label">Hotels Worldwide</div>
+            </div>
+            <div class="stat">
+                <div class="stat-num">190+</div>
+                <div class="stat-label">Countries Covered</div>
+            </div>
+            <div class="stat">
+                <div class="stat-num">5%</div>
+                <div class="stat-label">Cash Back on Every Stay</div>
+            </div>
+            <div class="stat">
+                <div class="stat-num">1T</div>
+                <div class="stat-label">CO₂ Offset Per Booking</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= FAQs ================= -->
+    <section class="faqs" id="faqs">
+        <h2>Frequently Asked Questions</h2>
+        <div class="faq-container">
+            <details class="faq-item">
+                <summary>How do I book a hotel on StayFinder?</summary>
+                <p>Simply enter your destination, check-in and check-out dates, and number of guests in the search box. You'll see real-time results from over 8 million hotels worldwide. Choose your favorite and book securely.</p>
+            </details>
+
+            <details class="faq-item">
+                <summary>Is booking on StayFinder safe?</summary>
+                <p>Yes, absolutely. All bookings are processed through our trusted partner network using secure, encrypted payment systems. Your personal and payment data is always protected.</p>
+            </details>
+
+            <details class="faq-item">
+                <summary>Do I really get 5% cash back?</summary>
+                <p>Yes! Every completed booking through StayFinder earns you approximately 5% cash back, credited to your account after your stay. Plus, 1 tonne of CO₂ is offset on your behalf — at no extra cost.</p>
+            </details>
+
+            <details class="faq-item">
+                <summary>Can I cancel or modify my booking?</summary>
+                <p>Cancellation and modification policies depend on the specific hotel and room type you selected. Free cancellation is available on most stays — you'll see the exact policy before confirming your booking.</p>
+            </details>
+
+            <details class="faq-item">
+                <summary>Do I need to create an account?</summary>
+                <p>No account is required to search. However, creating a free account lets you track bookings, manage rewards, and get personalized deals.</p>
+            </details>
+
+            <details class="faq-item">
+                <summary>Which countries are supported?</summary>
+                <p>StayFinder supports hotels in over 190 countries, including the USA, UK, Europe, Asia, Middle East, and beyond.</p>
+            </details>
+        </div>
+    </section>
+
+    <!-- ================= CONTACT ================= -->
+    <section class="contact" id="contact">
+        <h2>Contact Us</h2>
+        <p class="contact-text">
+            Have a question or need help? We're always here to help you.
+        </p>
+        <div class="contact-info">
+            <a href="mailto:ahmadsajjad7003@gmail.com" class="contact-btn">
+                📧 ahmadsajjad7003@gmail.com
+            </a>
+            <p class="contact-note">We usually reply within 24 hours.</p>
+        </div>
+    </section>
+
+    <!-- ================= FOOTER ================= -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-col">
+                <h4>StayFinder</h4>
+                <p>Your trusted partner for finding the perfect stay worldwide.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="{{ url_for('stays') }}">Stays</a></li>
+                    <li><a href="{{ url_for('flights') }}">Flights</a></li>
+                    <li><a href="{{ url_for('cars') }}">Car Rental</a></li>
+                    <li><a href="{{ url_for('attractions') }}">Attractions</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Support</h4>
+                <ul>
+                    <li><a href="#faqs">FAQs</a></li>
+                    <li><a href="#contact">Contact Us</a></li>
+                    <li><a href="mailto:ahmadsajjad7003@gmail.com">Email Support</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Legal</h4>
+                <ul>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms of Service</a></li>
+                    <li><a href="#">Cookie Policy</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2026 StayFinder. All rights reserved.</p>
+            <p>Contact: <a href="mailto:ahmadsajjad7003@gmail.com">ahmadsajjad7003@gmail.com</a></p>
+        </div>
+    </footer>
+
+    <!-- IMPT Swarm Hotel Widget -->
+    <script src="https://swarm.impt.io/widget.js" data-key="p_hkhrhj92ywq" async></script>
+
+</body>
+</html>
